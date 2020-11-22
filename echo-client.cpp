@@ -1,8 +1,11 @@
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <stdio.h>
+#include<bits/stdc++.h>
+#include<sys/socket.h>
+#include<sys/types.h>
+#include<netinet/in.h>
+#include<error.h>
 #include<string.h>
+#include<unistd.h>
+#include<arpa/inet.h>
  
 int main(int argc,char **argv)
 {
@@ -17,7 +20,7 @@ int main(int argc,char **argv)
     servaddr.sin_family=AF_INET;
     servaddr.sin_port=htons(1234);
  
-    inet_pton(AF_INET,"127.0.0.1",&(servaddr.sin_addr));
+    inet_pton(AF_INET,"192.168.43.54",&(servaddr.sin_addr));
  
     connect(sockfd,(struct sockaddr *)&servaddr,sizeof(servaddr));
  
@@ -29,7 +32,7 @@ int main(int argc,char **argv)
  
         write(sockfd,sendline,strlen(sendline)+1);
         read(sockfd,recvline,100);
-        printf("%s",recvline);
+        std::cout<<"-> "<<recvline;
     }
  
 }
